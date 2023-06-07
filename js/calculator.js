@@ -1,4 +1,5 @@
 const choices = ["ROCK","PAPER","SCISSORS"];
+game();
 
 function getComputerChoice() {
     let comp = choices[Math.floor(Math.random() * 3)];
@@ -19,3 +20,23 @@ function playRound(playerSelection, computerSelection) {
     else
         return `You Win! ${playerSelection} beats ${computerSelection}`;    
   }
+
+function isValid(playerSelection){
+    let check = playerSelection.toUpperCase();
+        if(check == "ROCK" || check == "PAPER" || check == "SCISSORS")
+            return true;
+        else
+            return false
+}
+function game(){
+
+    for(i = 0; i < 5; i++){
+        let playerSelection = prompt("Please type rock, paper, or scissors");
+        if(!isValid(playerSelection)){
+            console.log("ERROR, you did not type rock, paper, or scissors");
+            break;
+        }
+        console.log(playRound(playerSelection, getComputerChoice()));
+    }  
+
+}
