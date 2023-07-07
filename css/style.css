@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    
+    
+}
+
+.scoreboard{
+    display: flex;
+    gap: 1vw;
+}
