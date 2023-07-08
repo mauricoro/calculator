@@ -1,17 +1,12 @@
-const choices = ["ROCK","PAPER","SCISSORS"];
-let scores = [0,0];
-
 function getSelection(e){
     if((scores[0] > 4) || (scores[1] > 4)) return; 
     let playerSelection = this.textContent;
     let computerSelection = getComputerChoice();
     console.log(playRound(playerSelection, computerSelection));
-    if((scores[0] > 4)) document.querySelector(".announcement").textContent = "Player Wins!";
-    if((scores[1] > 4)) document.querySelector(".announcement").textContent = "Computer Wins!";
+    if((scores[0] > 4)) display.textContent = "Player Wins!";
+    if((scores[1] > 4)) display.textContent = "Computer Wins!";
 }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('click', getSelection))
 
 function getComputerChoice() {
     let comp = choices[Math.floor(Math.random() * 3)];
@@ -21,8 +16,10 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     // playerSelection = playerSelection.toUpperCase();
 
-    if(playerSelection == computerSelection)
-         return "It's a tie!";
+    if(playerSelection == computerSelection){
+        display.textContent = "It's a tie!";
+        return;
+    }
 
     let a = playerSelection == "ROCK" && computerSelection == "PAPER";
     let b = playerSelection == "PAPER" && computerSelection == "SCISSORS";
@@ -30,13 +27,19 @@ function playRound(playerSelection, computerSelection) {
     if(a || b || c){
         scores[1] += 1;
         document.querySelector(".computerScore").textContent = scores[1];
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;}
+        display.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;}
     else{
         scores[0] += 1; 
         document.querySelector(".userScore").textContent = scores[0];
-        return `You Win! ${playerSelection} beats ${computerSelection}`;}
+        display.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;}
         
   }
+
+const choices = ["ROCK","PAPER","SCISSORS"];
+let display = document.querySelector(".announcement");
+let scores = [0,0];
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', getSelection))
 
 /*function isValid(playerSelection){
     let check = playerSelection.toUpperCase();
